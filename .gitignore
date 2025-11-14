@@ -1,0 +1,19 @@
+# Jupyter
+.ipynb_checkpoints/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Data
+data/raw/
+data/processed/
+
+# Models
+models/
+
+# Other
+*.log
+
+# Environment Variables
+.env
