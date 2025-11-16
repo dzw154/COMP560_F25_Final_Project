@@ -1,21 +1,31 @@
 # Nonlinear Factor Models in Financial Markets: A Comparative Study of Autoencoders and PCA
 
-This project explores the use of autoencoders as a nonlinear alternative to Principal Component Analysis (PCA) for dimensionality reduction, clustering, and anomaly detection in financial return data. Using historical data from Yahoo Finance and Alpha Vantage, we evaluate how effectively these models extract latent market factors and uncover nonlinear structures.
+This project compares Principal Component Analysis (PCA) and neural autoencoders as factor models for financial return data. We focus on how well each method reconstructs returns and what structure their latent factors reveal.
 
 ## Goals
-- Compare PCA and autoencoders for reconstructing standardized daily returns
-- Evaluate performance using R² and Mean Squared Error (MSE)
-- Apply K-Means clustering to latent features from both models
-- Detect anomalies using both classical statistics (Z-score, IQR) and machine learning (Isolation Forests)
+- Reduce the dimensionality of daily equity returns using PCA and an autoencoder  
+- Compare reconstruction quality using R² and Mean Squared Error (MSE)  
+- Cluster latent factors with K-means and compare groupings across methods  
 
-## Datasets We Used
-- S&P 500 (2012–2025) from Yahoo Finance
-- Russell 3000 (2015–2025) from Alpha Vantage API (`TIME_SERIES_DAILY`)
+## Data
 
-## What We Found
-- PCA is highly effective for capturing linear structure, but autoencoders approach or exceed its performance on nonlinear patterns as model capacity increases.
-- Autoencoder-based clustering reveals latent groupings (e.g., NFLX and TSLA) not found in PCA results.
-- Anomaly detection is more robust when incorporating autoencoder reconstruction loss and multivariate Isolation Forests.
+We use daily prices from 2012–2025 for:
 
-## Report
-The full project report is written in LaTeX and available in `report.pdf`. It includes methodology, figures, and citations.
+- S&P 500 index (\^GSPC)  
+- Eight large tech stocks: AAPL, AMZN, GOOG, META, MSFT, NFLX, NVDA, TSLA  
+
+Data is sourced via `yfinance` and Alpha Vantage, converted to log returns, and standardized before modeling.
+
+## Methods
+
+- **PCA**: Linear factors extracted from the return matrix, evaluated via per-asset R² and MSE.  
+- **Autoencoder**: Feedforward encoder–decoder with a 128-neuron hidden layer and a low-dimensional bottleneck; evaluated with the same metrics.  
+- **Clustering**: K-means with \(k = 3\) applied separately to PCA and autoencoder latent factors.
+
+## Key Findings
+
+- PCA is a strong baseline, especially for more linear or index-like series.  
+- The autoencoder achieves competitive R² and MSE, and for some assets (e.g., NVDA, AAPL) matches or slightly exceeds PCA.  
+- K-means on autoencoder factors reveals different groupings (e.g., TSLA with NFLX, META with NVDA), suggesting the nonlinear embedding captures relationships that PCA does not.
+
+The full LaTeX report is available as `report.pdf` located in `report/report.pdf`.
