@@ -29,3 +29,6 @@ Data is sourced via `yfinance` and Alpha Vantage, converted to log returns, and 
 - K-means on autoencoder factors reveals different groupings (e.g., TSLA with NFLX, META with NVDA), suggesting the nonlinear embedding captures relationships that PCA does not.
 
 The full LaTeX report is available as `report.pdf` located in `report/report.pdf`.
+
+Presentation slides are located in `presentation/Presentation Slides.pdf`.
+* The link is also located in - https://docs.google.com/presentation/d/1ASH6VDv4nUTaEIOJqTpSyjirOToEHiGXF1dot4pq3uk/edit?usp=sharing
