@@ -17,3 +17,5 @@ models/
 
 # Environment Variables
 .env
+
+.DS_Store
